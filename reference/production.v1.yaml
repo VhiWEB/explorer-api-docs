@@ -1,0 +1,10 @@
+openapi: 3.0.0
+info:
+  title: Production
+  version: '1.0'
+  description: This is API
+servers:
+  - url: 'https://api.explorer.id/v1'
+paths: {}
+components:
+  schemas: {}
