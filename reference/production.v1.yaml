@@ -1,10 +1,631 @@
 openapi: 3.0.0
 info:
-  title: Production
+  title: API
   version: '1.0'
-  description: This is API
+  description: This is a main API provided for Explorer.id mobile application.
 servers:
   - url: 'https://api.explorer.id/v1'
-paths: {}
+    description: Production
+  - description: Staging
+    url: 'https://explorer.embrio.id/api/v1'
+paths:
+  /products:
+    get:
+      summary: Get All Products
+      tags:
+        - Products
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        $ref: '#/components/schemas/Meta-Pagination'
+      operationId: get-products
+  /destinations:
+    get:
+      summary: Get All Destinations
+      tags:
+        - Products
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Destination'
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        $ref: '#/components/schemas/Meta-Pagination'
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: 62
+                        name: Sumba
+                        slug: sumba
+                        description: ''
+                        popularity: 100
+                        keywords: Sumba
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/5b8f59f8c978d614510483.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/thumb_2036_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/thumb_2036_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/thumb_2036_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/thumb_2036_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/5b83747b7f903358794907.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_480_480_0_0_auto.jpg'
+                      - id: 37
+                        name: Yogyakarta
+                        slug: yogyakarta
+                        description: 'Keistimewaan kota Yogyakarta selalu dapat dinikmati mulai dari saat menyeruput kopi di pagi hari, beraktivitas di siang hari hingga saat mendengar alunan musik khas Yogya di malam hari'
+                        popularity: 90
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e45/173/5b8e45173d3f9869268421.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e45/173/thumb_1963_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e45/173/thumb_1963_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e45/173/thumb_1963_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e45/173/thumb_1963_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45b/dce/5b445bdcec470619911438.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45b/dce/thumb_1222_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45b/dce/thumb_1222_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45b/dce/thumb_1222_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45b/dce/thumb_1222_480_480_0_0_auto.jpg'
+                      - id: 70
+                        name: Kepulauan Derawan
+                        slug: kepulauan-derawan
+                        description: "Kepulauan Derawan adalah sebuah kepulauan yang berada di Kabupaten Berau, Kalimantan Timur. Di kepulauan ini terdapat sejumlah objek wisata bahari menawan, salah satunya Taman Bawah Laut yang diminati wisatawan mancanegara terutama para penyelam kelas dunia.\r\n\r\nKepulauan Derawan memiliki tiga kecamatan yaitu, Pulau Derawan, Maratua, dan Biduk Biduk, Berau."
+                        popularity: 90
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c76/492/5bac7649253f0283217117.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c76/492/thumb_2590_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c76/492/thumb_2590_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c76/492/thumb_2590_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c76/492/thumb_2590_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c76/408/5bac76408f31e535000329.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c76/408/thumb_2589_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c76/408/thumb_2589_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c76/408/thumb_2589_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c76/408/thumb_2589_480_480_0_0_auto.jpg'
+                      - id: 59
+                        name: Belitung
+                        slug: belitung
+                        description: Belitung selalu bisa membuat siapapun terdiam sesaat untuk mengagumi keindahannya
+                        popularity: 70
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e47/b83/5b8e47b83206f210925190.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e47/b83/thumb_1972_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e47/b83/thumb_1972_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e47/b83/thumb_1972_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e47/b83/thumb_1972_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83f/388/5b683f388e841148177499.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83f/388/thumb_1524_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83f/388/thumb_1524_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83f/388/thumb_1524_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83f/388/thumb_1524_480_480_0_0_auto.jpg'
+                      - id: 77
+                        name: Sulawesi
+                        slug: sulawesi
+                        description: ''
+                        popularity: 70
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bd/fc9/999/5bdfc9999a8c5507364161.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bd/fc9/999/thumb_3162_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bd/fc9/999/thumb_3162_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bd/fc9/999/thumb_3162_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bd/fc9/999/thumb_3162_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bd/fc9/926/5bdfc9926f0be060230624.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bd/fc9/926/thumb_3161_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bd/fc9/926/thumb_3161_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bd/fc9/926/thumb_3161_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bd/fc9/926/thumb_3161_480_480_0_0_auto.jpg'
+                      - id: 53
+                        name: Lampung
+                        slug: lampung
+                        description: 'Lampung, dimana di satu sisi pasir putih, pantai yang tenang dan keindahan pesona bawah laut sudah menanti. Di sisi lainnya, suasana perkotaan dengan berbagai kenikmatan khas daerah sudah siap untuk dinikmati'
+                        popularity: 55
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f57/567/5b8f575671f0d498150719.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f57/567/thumb_2029_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f57/567/thumb_2029_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f57/567/thumb_2029_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f57/567/thumb_2029_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/f4c/5b683ef4cd68a835659453.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/f4c/thumb_1523_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/f4c/thumb_1523_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/f4c/thumb_1523_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/f4c/thumb_1523_480_480_0_0_auto.jpg'
+                      - id: 65
+                        name: Sukabumi
+                        slug: sukabumi
+                        description: ''
+                        popularity: 50
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c79/23d/5bac7923dd7c3735609573.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c79/23d/thumb_2594_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c79/23d/thumb_2594_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c79/23d/thumb_2594_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c79/23d/thumb_2594_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c79/1a3/5bac791a3e1cc949983212.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c79/1a3/thumb_2593_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c79/1a3/thumb_2593_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c79/1a3/thumb_2593_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/c79/1a3/thumb_2593_480_480_0_0_auto.jpg'
+                      - id: 71
+                        name: Pangandaran
+                        slug: pangandaran
+                        description: ''
+                        popularity: 50
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/09e/5bb1a109e68ed600140492.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/09e/thumb_2666_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/09e/thumb_2666_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/09e/thumb_2666_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/09e/thumb_2666_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/015/5bb1a10151004028956988.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/015/thumb_2665_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/015/thumb_2665_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/015/thumb_2665_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/015/thumb_2665_480_480_0_0_auto.jpg'
+                      - id: 72
+                        name: Majalengka
+                        slug: majalengka
+                        description: ''
+                        popularity: 50
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/de4/5bb1a1de4a730683165906.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/de4/thumb_2668_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/de4/thumb_2668_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/de4/thumb_2668_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/de4/thumb_2668_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/d86/5bb1a1d86df3d804578462.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/d86/thumb_2667_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/d86/thumb_2667_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/d86/thumb_2667_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5bb/1a1/d86/thumb_2667_480_480_0_0_auto.jpg'
+                      - id: 54
+                        name: Tana Toraja
+                        slug: tana-toraja
+                        description: Mitos mengatakan kalau nenek moyang asli masyarakat Toraja dipercaya berasal dari surga dan turun langsung ke bumi dengan menggunakan tangga. Kentalnya tradisi di Tana Toraja menjadi semakin menarik kan untuk di eksplor?
+                        popularity: 41
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f57/ea2/5b8f57ea20288701139825.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f57/ea2/thumb_2030_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f57/ea2/thumb_2030_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f57/ea2/thumb_2030_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f57/ea2/thumb_2030_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/b76/5b683eb7606d3176119986.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/b76/thumb_1522_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/b76/thumb_1522_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/b76/thumb_1522_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/b76/thumb_1522_480_480_0_0_auto.jpg'
+                      - id: 56
+                        name: Padang
+                        slug: padang
+                        description: Langkah pertama akan membawa kamu menyusuri uniknya Kota Serambi Mekkah. Langkah berikutnya akan membuat mu semakin betah di kota yang juga memiliki julukan Mesir van Andalas (Egypte van Andalas) ini
+                        popularity: 31
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f58/dd8/5b8f58dd8d892682718083.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f58/dd8/thumb_2031_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f58/dd8/thumb_2031_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f58/dd8/thumb_2031_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f58/dd8/thumb_2031_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/840/65a/5b684065af1ed566016499.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/840/65a/thumb_1527_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/840/65a/thumb_1527_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/840/65a/thumb_1527_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/840/65a/thumb_1527_480_480_0_0_auto.jpg'
+                      - id: 61
+                        name: Lombok
+                        slug: lombok
+                        description: Tempat dimana keputusan terberat yang perlu kamu ambil adalah mau eksplor apa lagi selanjutnya di tempat ini
+                        popularity: 16
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/c84/5b8f59c846ee8127676219.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/c84/thumb_2035_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/c84/thumb_2035_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/c84/thumb_2035_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/c84/thumb_2035_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/375/652/5b83756528244601226325.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/375/652/thumb_1762_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/375/652/thumb_1762_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/375/652/thumb_1762_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/375/652/thumb_1762_480_480_0_0_auto.jpg'
+                      - id: 55
+                        name: Medan
+                        slug: medan
+                        description: 'Sebagai pintu gerbang bagian barat Indonesia, Segala hal yang disajikan oleh Kota ini memastikan setiap orang akan berpaling untuk melihat keindahannya & langsung pergi ke Medan'
+                        popularity: 15
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e44/af4/5b8e44af4d6a0984370476.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e44/af4/thumb_1961_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e44/af4/thumb_1961_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e44/af4/thumb_1961_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/e44/af4/thumb_1961_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/321/5b683e321de4a624754270.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/321/thumb_1520_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/321/thumb_1520_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/321/thumb_1520_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83e/321/thumb_1520_480_480_0_0_auto.jpg'
+                      - id: 38
+                        name: Sentul
+                        slug: sentul
+                        description: ''
+                        popularity: 12
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f54/945/5b8f549459e7f195041397.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f54/945/thumb_2021_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f54/945/thumb_2021_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f54/945/thumb_2021_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f54/945/thumb_2021_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83b/bb9/5b683bbb912f7251627997.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83b/bb9/thumb_1515_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83b/bb9/thumb_1515_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83b/bb9/thumb_1515_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83b/bb9/thumb_1515_480_480_0_0_auto.jpg'
+                      - id: 31
+                        name: Jakarta
+                        slug: jakarta
+                        description: Gemerlap Jakarta sebagai Kota Metropolitan tetap memberikan Kita kesempatan untuk mengeksplor Ibu Kota Republik Indonesia ini dari berbagai sudut pandang yang berbeda
+                        popularity: null
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f50/ba7/5b8f50ba7d27e650720454.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f50/ba7/thumb_2009_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f50/ba7/thumb_2009_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f50/ba7/thumb_2009_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f50/ba7/thumb_2009_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/c4c/bc8/5b4c4cbc80eb1740568413.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/c4c/bc8/thumb_1266_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/c4c/bc8/thumb_1266_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/c4c/bc8/thumb_1266_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/c4c/bc8/thumb_1266_480_480_0_0_auto.jpg'
+                      - id: 66
+                        name: Kepulauan Seribu
+                        slug: kepulauan-seribu
+                        description: ''
+                        popularity: null
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/366/cab/5ba366cabd895268125507.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/366/cab/thumb_2415_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/366/cab/thumb_2415_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/366/cab/thumb_2415_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5ba/366/cab/thumb_2415_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b9/8e8/4c6/5b98e84c62a3a023015304.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b9/8e8/4c6/thumb_2169_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b9/8e8/4c6/thumb_2169_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b9/8e8/4c6/thumb_2169_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b9/8e8/4c6/thumb_2169_480_480_0_0_auto.jpg'
+                      - id: 34
+                        name: Bali
+                        slug: bali
+                        description: Karena tidak ada tempat lain seperti Bali
+                        popularity: null
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f51/d91/5b8f51d9101e2715293775.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f51/d91/thumb_2010_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f51/d91/thumb_2010_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f51/d91/thumb_2010_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f51/d91/thumb_2010_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83a/8b5/5b683a8b5538f088022405.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83a/8b5/thumb_1514_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83a/8b5/thumb_1514_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83a/8b5/thumb_1514_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83a/8b5/thumb_1514_480_480_0_0_auto.jpg'
+                      - id: 39
+                        name: Puncak
+                        slug: puncak
+                        description: ''
+                        popularity: null
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f53/c41/5b8f53c416e95649902961.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f53/c41/thumb_2014_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f53/c41/thumb_2014_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f53/c41/thumb_2014_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f53/c41/thumb_2014_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45f/302/5b445f302c500186851000.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45f/302/thumb_1226_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45f/302/thumb_1226_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45f/302/thumb_1226_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45f/302/thumb_1226_480_480_0_0_auto.jpg'
+                      - id: 40
+                        name: Bogor
+                        slug: bogor
+                        description: ''
+                        popularity: null
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f54/48e/5b8f5448e40b8708681035.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f54/48e/thumb_2019_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f54/48e/thumb_2019_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f54/48e/thumb_2019_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f54/48e/thumb_2019_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83c/e3b/5b683ce3b35a9539468155.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83c/e3b/thumb_1517_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83c/e3b/thumb_1517_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83c/e3b/thumb_1517_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b6/83c/e3b/thumb_1517_480_480_0_0_auto.jpg'
+                      - id: 42
+                        name: Bandung
+                        slug: bandung
+                        description: ''
+                        popularity: null
+                        keywords: ''
+                        banner:
+                          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f55/819/5b8f558193575337637156.jpg'
+                          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f55/819/thumb_2022_160_160_0_0_crop.jpg'
+                          medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f55/819/thumb_2022_240_240_0_0_crop.jpg'
+                          large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f55/819/thumb_2022_800_800_0_0_crop.jpg'
+                          thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f55/819/thumb_2022_480_480_0_0_auto.jpg'
+                        image:
+                          - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45d/831/5b445d831a014539389064.jpg'
+                            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45d/831/thumb_1225_160_160_0_0_crop.jpg'
+                            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45d/831/thumb_1225_240_240_0_0_crop.jpg'
+                            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45d/831/thumb_1225_800_800_0_0_crop.jpg'
+                            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b4/45d/831/thumb_1225_480_480_0_0_auto.jpg'
+                    meta:
+                      pagination:
+                        total: 41
+                        count: 20
+                        per_page: 20
+                        current_page: 1
+                        total_pages: 3
+                        links:
+                          next: 'http://api.explorer.id/v1/destinations?page=2'
+      operationId: get-destinations
+      requestBody: {}
+      parameters: []
+  /auth/access_token:
+    post:
+      summary: Login using Password
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+              examples:
+                Example: {}
+      operationId: post-auth-access_token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                  default: password
+                username:
+                  type: string
+                password:
+                  type: string
+                client_id:
+                  type: string
+                client_token:
+                  type: string
+            examples:
+              Example: {}
+      parameters: []
+  /me:
+    get:
+      summary: Get User Profile
+      tags:
+        - User
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+      operationId: get-me
+      security:
+        - User Authentication: []
 components:
-  schemas: {}
+  schemas:
+    Product:
+      title: Product
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+      type: object
+      x-tags:
+        - Models
+    Destination:
+      title: Destination
+      type: object
+      x-examples:
+        Example:
+          id: 62
+          name: Sumba
+          slug: sumba
+          description: ''
+          popularity: 100
+          keywords: Sumba
+          banner:
+            original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/5b8f59f8c978d614510483.jpg'
+            small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/thumb_2036_160_160_0_0_crop.jpg'
+            medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/thumb_2036_240_240_0_0_crop.jpg'
+            large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/thumb_2036_800_800_0_0_crop.jpg'
+            thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/thumb_2036_480_480_0_0_auto.jpg'
+          image:
+            - original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/5b83747b7f903358794907.jpg'
+              small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_160_160_0_0_crop.jpg'
+              medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_240_240_0_0_crop.jpg'
+              large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_800_800_0_0_crop.jpg'
+              thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_480_480_0_0_auto.jpg'
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        popularity:
+          type: integer
+        keywords:
+          type: string
+        banner:
+          $ref: '#/components/schemas/Image'
+        image:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+      x-tags:
+        - Models
+    Image:
+      title: Image
+      type: object
+      x-examples:
+        Example:
+          original: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/5b8f59f8c978d614510483.jpg'
+          small: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/f59/f8c/thumb_2036_160_160_0_0_crop.jpg'
+      properties:
+        original:
+          type: string
+        small:
+          type: string
+        medium:
+          type: string
+        large:
+          type: string
+      x-tags:
+        - Models
+    Meta-Pagination:
+      title: Meta Pagination
+      type: object
+      x-examples:
+        Example:
+          total: 41
+          count: 20
+          per_page: 20
+          current_page: 1
+          total_pages: 3
+          links:
+            next: 'http://api.explorer.id/v1/destinations?page=2'
+      description: ''
+      properties:
+        total:
+          type: integer
+        count:
+          type: integer
+        per_page:
+          type: integer
+        current_page:
+          type: string
+        total_pages:
+          type: string
+        links:
+          type: object
+          properties:
+            previous:
+              type: string
+            next:
+              type: string
+      required:
+        - total
+        - count
+        - per_page
+        - current_page
+        - total_pages
+      x-tags:
+        - Models
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        avatar:
+          $ref: '#/components/schemas/Image'
+      x-tags:
+        - Models
+  securitySchemes:
+    User Authentication:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}
+      description: ''
