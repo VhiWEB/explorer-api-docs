@@ -430,6 +430,7 @@ paths:
       operationId: get-destinations
       requestBody: {}
       parameters: []
+      description: ''
   /auth/access_token:
     post:
       summary: Login using Password
@@ -526,9 +527,11 @@ components:
               medium: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_240_240_0_0_crop.jpg'
               large: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_800_800_0_0_crop.jpg'
               thumb: 'https://d1ies22sjipbc9.cloudfront.net/uploads/public/5b8/374/7b7/thumb_1761_480_480_0_0_auto.jpg'
+      x-tags:
+        - Models
       properties:
         id:
-          type: string
+          type: integer
         name:
           type: string
         slug:
@@ -545,8 +548,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Image'
-      x-tags:
-        - Models
+      required:
+        - id
+        - name
     Image:
       title: Image
       type: object
@@ -578,6 +582,8 @@ components:
           links:
             next: 'http://api.explorer.id/v1/destinations?page=2'
       description: ''
+      x-tags:
+        - Models
       properties:
         total:
           type: integer
@@ -602,8 +608,6 @@ components:
         - per_page
         - current_page
         - total_pages
-      x-tags:
-        - Models
     User:
       title: User
       type: object
